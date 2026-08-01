@@ -2,7 +2,7 @@ const ApiError = require("../utils/apiError");
 const uuid = require("uuid");
 const { Op, QueryTypes } = require("sequelize");
 // const { v4: uuidv4, validate: uuidValidate } = require('uuid');
-const { Flight, Airport, Airline, Price } = require("../models");
+
 const { query } = require("express");
 
 const airport = require("../models/airport");
