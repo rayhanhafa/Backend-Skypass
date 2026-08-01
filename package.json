@@ -12,7 +12,8 @@
     "db-migrate": "npx sequelize db:migrate",
     "db-undo-migrate": "npx sequelize db:migrate:undo:all",
     "db-seed": "node ./seeders/masterSeed.js",
-    "db-undo-seed": "npx sequelize db:seed:undo:all"
+    "db-undo-seed": "npx sequelize db:seed:undo:all",
+    "postinstall": "npx playwright install chromium"
   },
   "keywords": [
     "Kampus Merdeka Batch 6",
