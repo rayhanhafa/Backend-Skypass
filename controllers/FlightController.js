@@ -1,22 +1,14 @@
 const ApiError = require("../utils/apiError");
 const uuid = require("uuid");
-const { Op } = require("sequelize");
+const { Op, QueryTypes } = require("sequelize");
 // const { v4: uuidv4, validate: uuidValidate } = require('uuid');
 const { Flight, Airport, Airline, Price } = require("../models");
 const { query } = require("express");
-const { Sequelize, QueryTypes } = require("sequelize");
-const airport = require("../models/airport");
-require("dotenv").config();
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USERNAME,
-  process.env.DB_PASSWORD,
-  {
-    host: process.env.DB_HOST,
-    dialect: "postgres",
-  },
-);
+const airport = require("../models/airport");
+
+const { Flight, Airport, Airline, Price, sequelize } = require("../models");
+
 const createFlight = async (req, res, next) => {
   const {
     airline_code,
@@ -178,13 +170,13 @@ const getAllFlights = async (req, res, next) => {
     });
 
     if (flights.length === 0) {
-    return res.status(404).json({
+      return res.status(404).json({
         is_success: true,
         code: 404,
         data: {},
         message: "No Flight found for the requested date",
-    });
-}
+      });
+    }
     // Calculate pagination details
     const totalCount = flights.length;
     const totalPages = Math.ceil(totalCount / pageSize);
