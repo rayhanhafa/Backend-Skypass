@@ -44,12 +44,14 @@ const printTicket = async (email, title, body, fileLocations) => {
         const ticketFile = fs.readFileSync(filePath);
 
         let transporter = nodemailer.createTransport({
-            host: process.env.MAIL_HOST,
-            auth: {
-                user: process.env.MAIL_USER,
-                pass: process.env.MAIL_PASS,
-            },
-        });
+    host: process.env.MAIL_HOST,
+    port: Number(process.env.MAIL_PORT),
+    secure: false, // port 587 menggunakan STARTTLS
+    auth: {
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS,
+    },
+});
 
         // Send email with attachment
         let info = await transporter.sendMail({
