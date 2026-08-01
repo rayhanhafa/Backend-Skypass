@@ -14,6 +14,7 @@ const flightDataSeeder = require("./20240528033556-flightData");
 const notificationSeeder = require("./20240612132242-notification");
 require("dotenv").config();
 
+// Railway database connection fix
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: "postgres",
   logging: false,
